@@ -24,6 +24,7 @@ import org.eclipse.collections.impl.bag.mutable.MultiReaderHashBag;
 import org.eclipse.collections.impl.list.mutable.FastList;
 import org.eclipse.collections.impl.set.mutable.UnifiedSet;
 import org.eclipse.collections.impl.test.Verify;
+import org.eclipse.collections.impl.tuple.primitive.PrimitiveTuples;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -43,7 +44,7 @@ public class BagsTest
         Verify.assertInstanceOf(MutableBag.class, bagFactory.of(1, 2, 3));
         Verify.assertBagsEqual(HashBag.newBagWith(1, 2, 3, 4), bagFactory.of(1, 2, 3, 4));
         Verify.assertInstanceOf(MutableBag.class, bagFactory.of(1, 2, 3, 4));
-        Verify.assertBagsEqual(HashBag.newBagWith(1, 2, 3, 4, 5), bagFactory.of(1, 2, 3, 4, 5));
+        Verify.assertBagsEqual(HashBag.newBagWith(1, 2, 3, 4, 5), bagFactory.ofOccurrences(PrimitiveTuples.pair(1, 1), PrimitiveTuples.pair(2, 1), PrimitiveTuples.pair(3, 1), PrimitiveTuples.pair(4, 1), PrimitiveTuples.pair(5, 1)));
         Verify.assertInstanceOf(MutableBag.class, bagFactory.of(1, 2, 3, 4, 5));
 
         Bag<Integer> bag = HashBag.newBagWith(1, 2, 2, 3, 3, 3);
@@ -56,6 +57,16 @@ public class BagsTest
         Verify.assertInstanceOf(MutableBag.class, bagFactory.ofAll(UnifiedSet.newSetWith(1, 2, 3, 4, 5)));
         Verify.assertBagsEqual(HashBag.newBagWith(1, 2, 2, 3, 3, 3), bagFactory.fromStream(Stream.of(1, 2, 2, 3, 3, 3)));
         Verify.assertInstanceOf(MutableBag.class, bagFactory.fromStream(Stream.of(1, 2, 2, 3, 3, 3)));
+        Verify.assertBagsEqual(HashBag.newBagWith(1), bagFactory.ofOccurrences(1, 1));
+        Verify.assertInstanceOf(MutableBag.class, bagFactory.ofOccurrences(1, 1));
+        Verify.assertBagsEqual(HashBag.newBagWith(1, 2, 2), bagFactory.ofOccurrences(1, 1, 2, 2));
+        Verify.assertInstanceOf(MutableBag.class, bagFactory.ofOccurrences(1, 1, 2, 2));
+        Verify.assertBagsEqual(HashBag.newBagWith(1, 2, 2, 3, 3, 3), bagFactory.ofOccurrences(1, 1, 2, 2, 3, 3));
+        Verify.assertInstanceOf(MutableBag.class, bagFactory.ofOccurrences(1, 1, 2, 2, 3, 3));
+        Verify.assertBagsEqual(HashBag.newBagWith(1, 2, 2, 3, 3, 3, 4, 4, 4, 4), bagFactory.ofOccurrences(PrimitiveTuples.pair(1, 1), PrimitiveTuples.pair(2, 2), PrimitiveTuples.pair(3, 3), PrimitiveTuples.pair(4, 4)));
+        Verify.assertInstanceOf(MutableBag.class, bagFactory.ofOccurrences(1, 1, 2, 2, 3, 3, 4, 4));
+        Verify.assertBagsEqual(HashBag.newBagWith(1, 2, 2), bagFactory.ofOccurrences(PrimitiveTuples.pair(1, 1), PrimitiveTuples.pair(2, 2)));
+        Verify.assertInstanceOf(MutableBag.class, bagFactory.ofOccurrences(PrimitiveTuples.pair(1, 1), PrimitiveTuples.pair(2, 2)));
     }
 
     @Test
@@ -88,6 +99,16 @@ public class BagsTest
         Verify.assertInstanceOf(ImmutableBag.class, bagFactory.ofAll(HashBag.newBagWith(1, 2, 3)));
         Assert.assertEquals(HashBag.newBagWith(3, 2, 1), bagFactory.fromStream(Stream.of(1, 2, 3)));
         Verify.assertInstanceOf(ImmutableBag.class, bagFactory.fromStream(Stream.of(1, 2, 3)));
+        Assert.assertEquals(HashBag.newBagWith(1), bagFactory.ofOccurrences(1, 1));
+        Verify.assertInstanceOf(ImmutableBag.class, bagFactory.ofOccurrences(1, 1));
+        Assert.assertEquals(HashBag.newBagWith(1, 2, 2), bagFactory.ofOccurrences(1, 1, 2, 2));
+        Verify.assertInstanceOf(ImmutableBag.class, bagFactory.ofOccurrences(1, 1, 2, 2));
+        Assert.assertEquals(HashBag.newBagWith(1, 2, 2, 3, 3, 3), bagFactory.ofOccurrences(1, 1, 2, 2, 3, 3));
+        Verify.assertInstanceOf(ImmutableBag.class, bagFactory.ofOccurrences(1, 1, 2, 2, 3, 3));
+        Assert.assertEquals(HashBag.newBagWith(1, 2, 2, 3, 3, 3, 4, 4, 4, 4), bagFactory.ofOccurrences(1, 1, 2, 2, 3, 3, 4, 4));
+        Verify.assertInstanceOf(ImmutableBag.class, bagFactory.ofOccurrences(1, 1, 2, 2, 3, 3, 4, 4));
+        Assert.assertEquals(HashBag.newBagWith(1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5), bagFactory.ofOccurrences(PrimitiveTuples.pair(1, 1), PrimitiveTuples.pair(2, 2), PrimitiveTuples.pair(3, 3), PrimitiveTuples.pair(4, 4), PrimitiveTuples.pair(5, 5)));
+        Verify.assertInstanceOf(ImmutableBag.class, bagFactory.ofOccurrences(PrimitiveTuples.pair(1, 1), PrimitiveTuples.pair(2, 2), PrimitiveTuples.pair(3, 3), PrimitiveTuples.pair(4, 4), PrimitiveTuples.pair(5, 5)));
     }
 
     @Test

@@ -92,6 +92,7 @@ import org.eclipse.collections.impl.map.mutable.UnifiedMap;
 import org.eclipse.collections.impl.map.sorted.mutable.TreeSortedMap;
 import org.eclipse.collections.impl.multimap.bag.HashBagMultimap;
 import org.eclipse.collections.impl.tuple.Tuples;
+import org.eclipse.collections.impl.tuple.primitive.PrimitiveTuples;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -1992,7 +1993,7 @@ public interface RichIterableTestCase extends IterableTestCase
     default void RichIterable_toBag()
     {
         assertEquals(
-                Bags.immutable.with(4, 4, 4, 4, 3, 3, 3, 2, 2, 1),
+                Bags.immutable.ofOccurrences(PrimitiveTuples.pair(4, 4), PrimitiveTuples.pair(3, 3), PrimitiveTuples.pair(2, 2), PrimitiveTuples.pair(1, 1)),
                 this.newWith(4, 4, 4, 4, 3, 3, 3, 2, 2, 1).toBag());
     }
 

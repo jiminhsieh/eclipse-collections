@@ -67,6 +67,7 @@ import org.eclipse.collections.impl.multimap.list.FastListMultimap;
 import org.eclipse.collections.impl.set.mutable.UnifiedSet;
 import org.eclipse.collections.impl.set.sorted.mutable.TreeSortedSet;
 import org.eclipse.collections.impl.test.Verify;
+import org.eclipse.collections.impl.tuple.primitive.PrimitiveTuples;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -892,7 +893,7 @@ public abstract class AbstractLazyIterableTestCase
     {
         LazyIterable<RichIterable<Integer>> groups = this.lazyIterable.chunk(2);
         RichIterable<Integer> sizes = groups.collect(RichIterable::size);
-        Assert.assertEquals(Bags.mutable.of(2, 2, 2, 1), sizes.toBag());
+        Assert.assertEquals(Bags.mutable.ofOccurrences(PrimitiveTuples.pair(2, 3), PrimitiveTuples.pair(1, 1)), sizes.toBag());
     }
 
     @Test(expected = IllegalArgumentException.class)

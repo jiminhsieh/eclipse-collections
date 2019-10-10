@@ -14,6 +14,8 @@ import java.util.stream.Stream;
 
 import org.eclipse.collections.api.bag.ImmutableBag;
 import org.eclipse.collections.api.factory.Bags;
+import org.eclipse.collections.api.tuple.primitive.IntIntPair;
+import org.eclipse.collections.api.tuple.primitive.ObjectIntPair;
 
 /**
  * A factory which creates instances of type {@link ImmutableBag}.
@@ -47,7 +49,49 @@ public interface ImmutableBagFactory
      */
     <T> ImmutableBag<T> of(T... elements);
 
+    default <T> ImmutableBag<T> ofOccurrences(T element, int occurrence)
+    {
+        return this.withOccurrences(element, occurrence);
+    }
+
+    default <T> ImmutableBag<T> ofOccurrences(T element1, int occurrence1, T element2, int occurrence2)
+    {
+        return this.withOccurrences(element1, occurrence1, element2, occurrence2);
+    }
+
+    default <T> ImmutableBag<T> ofOccurrences(T element1, int occurrence1, T element2, int occurrence2, T element3, int occurrence3)
+    {
+        return this.withOccurrences(element1, occurrence1, element2, occurrence2, element3, occurrence3);
+    }
+
+    default <T> ImmutableBag<T> ofOccurrences(T element1, int occurrence1, T element2, int occurrence2, T element3, int occurrence3, T element4, int occurrence4)
+    {
+        return this.withOccurrences(element1, occurrence1, element2, occurrence2, element3, occurrence3, element4, occurrence4);
+    }
+
+    default <T> ImmutableBag<T> ofOccurrences(ObjectIntPair<T>... elementsWithOccurrences)
+    {
+        return this.withOccurrences(elementsWithOccurrences);
+    }
+
+    default ImmutableBag<Integer> ofOccurrences(IntIntPair... elementsWithOccurrences)
+    {
+        return this.withOccurrences(elementsWithOccurrences);
+    }
+
     <T> ImmutableBag<T> with(T... elements);
+
+    <T> ImmutableBag<T> withOccurrences(T element, int occurrence);
+
+    <T> ImmutableBag<T> withOccurrences(T element1, int occurrence1, T element2, int occurrence2);
+
+    <T> ImmutableBag<T> withOccurrences(T element1, int occurrence1, T element2, int occurrence2, T element3, int occurrence3);
+
+    <T> ImmutableBag<T> withOccurrences(T element1, int occurrence1, T element2, int occurrence2, T element3, int occurrence3, T element4, int occurrence4);
+
+    <T> ImmutableBag<T> withOccurrences(ObjectIntPair<T>... elementsWithOccurrences);
+
+    ImmutableBag<Integer> withOccurrences(IntIntPair... elementsWithOccurrences);
 
     /**
      * Same as {@link #withAll(Iterable)}.
