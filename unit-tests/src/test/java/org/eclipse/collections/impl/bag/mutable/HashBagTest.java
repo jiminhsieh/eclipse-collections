@@ -18,7 +18,6 @@ import org.eclipse.collections.impl.factory.Bags;
 import org.eclipse.collections.impl.list.mutable.FastList;
 import org.eclipse.collections.impl.map.mutable.UnifiedMap;
 import org.eclipse.collections.impl.test.Verify;
-import org.eclipse.collections.impl.tuple.primitive.PrimitiveTuples;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -92,7 +91,7 @@ public class HashBagTest extends MutableBagTestCase
         super.removeAll();
         MutableBag<Integer> bag1 = this.newWith(1, 2, 3);
         Assert.assertTrue(bag1.removeAll(this.newWith(1, 2, 4)));
-        Assert.assertEquals(Bags.mutable.ofOccurrences(PrimitiveTuples.pair(3, 1)), bag1);
+        Assert.assertEquals(Bags.mutable.of(3), bag1);
 
         MutableBag<Integer> bag2 = this.newWith(1, 1, 1, 2, 2, 3, 4);
         Verify.assertSize(7, bag2);

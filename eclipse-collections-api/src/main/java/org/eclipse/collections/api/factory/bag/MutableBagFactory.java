@@ -13,7 +13,6 @@ package org.eclipse.collections.api.factory.bag;
 import java.util.stream.Stream;
 
 import org.eclipse.collections.api.bag.MutableBag;
-import org.eclipse.collections.api.tuple.primitive.IntIntPair;
 import org.eclipse.collections.api.tuple.primitive.ObjectIntPair;
 
 /**
@@ -75,11 +74,6 @@ public interface MutableBagFactory
         return this.withOccurrences(elementsWithOccurrences);
     }
 
-    default MutableBag<Integer>  ofOccurrences(IntIntPair... elementsWithOccurrences)
-    {
-        return this.withOccurrences(elementsWithOccurrences);
-    }
-
     <T> MutableBag<T> with(T... elements);
 
     <T> MutableBag<T> withOccurrences(T element, int occurrence);
@@ -91,8 +85,6 @@ public interface MutableBagFactory
     <T> MutableBag<T> withOccurrences(T element1, int occurrence1, T element2, int occurrence2, T element3, int occurrence3, T element4, int occurrence4);
 
     <T> MutableBag<T> withOccurrences(ObjectIntPair<T>... elementsWithOccurrences);
-
-    MutableBag<Integer>  withOccurrences(IntIntPair... elementsWithOccurrences);
 
     /**
      * Same as {@link #withAll(Iterable)}.

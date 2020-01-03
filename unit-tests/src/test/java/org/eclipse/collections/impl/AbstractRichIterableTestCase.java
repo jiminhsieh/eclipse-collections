@@ -112,7 +112,6 @@ import org.eclipse.collections.impl.map.sorted.mutable.TreeSortedMap;
 import org.eclipse.collections.impl.set.mutable.UnifiedSet;
 import org.eclipse.collections.impl.set.sorted.mutable.TreeSortedSet;
 import org.eclipse.collections.impl.test.Verify;
-import org.eclipse.collections.impl.tuple.primitive.PrimitiveTuples;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -316,7 +315,7 @@ public abstract class AbstractRichIterableTestCase
     public void collectTarget()
     {
         Assert.assertEquals(
-                Bags.mutable.ofOccurrences(PrimitiveTuples.pair(2, 1), PrimitiveTuples.pair(3, 1), PrimitiveTuples.pair(4, 1)),
+                Bags.mutable.of(2, 3, 4),
                 this.newWith(1, 2, 3).collect(each -> each + 1, Lists.mutable.empty()).toBag());
         Assert.assertEquals(
                 Bags.mutable.of(2, 3, 4),
