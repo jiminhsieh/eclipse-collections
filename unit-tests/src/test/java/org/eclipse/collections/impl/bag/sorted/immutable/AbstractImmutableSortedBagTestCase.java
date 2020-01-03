@@ -155,7 +155,7 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
     public void selectDuplicates()
     {
         Assert.assertEquals(
-                Bags.immutable.ofOccurrences(PrimitiveTuples.pair(1, 3)),
+                Bags.immutable.with(1, 1, 1),
                 this.classUnderTest().selectDuplicates());
     }
 

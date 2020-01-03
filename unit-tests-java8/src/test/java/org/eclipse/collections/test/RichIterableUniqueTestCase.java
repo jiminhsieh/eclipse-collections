@@ -56,7 +56,6 @@ import org.eclipse.collections.impl.map.mutable.UnifiedMap;
 import org.eclipse.collections.impl.map.sorted.mutable.TreeSortedMap;
 import org.eclipse.collections.impl.test.SerializeTestHelper;
 import org.eclipse.collections.impl.tuple.Tuples;
-import org.eclipse.collections.impl.tuple.primitive.PrimitiveTuples;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -769,7 +768,7 @@ public interface RichIterableUniqueTestCase extends RichIterableTestCase
     {
         RichIterable<Integer> iterable = this.newWith(1, 2, 3);
         MutableBag<Integer> result = iterable.reduceInPlace(Collectors.toCollection(Bags.mutable::empty));
-        Assert.assertEquals(Bags.immutable.ofOccurrences(PrimitiveTuples.pair(1, 1), PrimitiveTuples.pair(2, 1), PrimitiveTuples.pair(3, 1)), result);
+        Assert.assertEquals(Bags.immutable.with(1, 2, 3), result);
 
         String joining = result.collect(Object::toString).reduceInPlace(Collectors.joining(","));
         Assert.assertEquals(result.collect(Object::toString).makeString(","), joining);
@@ -1002,8 +1001,8 @@ public interface RichIterableUniqueTestCase extends RichIterableTestCase
     default void RichIterable_toBag()
     {
         assertEquals(
-                Bags.immutable.ofOccurrences(PrimitiveTuples.pair(4, 1), PrimitiveTuples.pair(3, 1)),
-                this.newWith(4, 3).toBag());
+                Bags.immutable.with(4, 3, 2, 1),
+                this.newWith(4, 3, 2, 1).toBag());
     }
 
     @Override

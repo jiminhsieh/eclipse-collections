@@ -14,7 +14,6 @@ import org.eclipse.collections.api.bag.Bag;
 import org.eclipse.collections.api.bag.ImmutableBag;
 import org.eclipse.collections.api.bag.MutableBag;
 import org.eclipse.collections.api.factory.bag.ImmutableBagFactory;
-import org.eclipse.collections.api.tuple.primitive.IntIntPair;
 import org.eclipse.collections.api.tuple.primitive.ObjectIntPair;
 import org.eclipse.collections.impl.bag.mutable.HashBag;
 import org.eclipse.collections.impl.utility.Iterate;
@@ -156,48 +155,6 @@ public class ImmutableBagFactoryImpl implements ImmutableBagFactory
         for (int i = 0; i < elementsWithOccurrences.length; i++)
         {
             ObjectIntPair<T> itemToAdd = elementsWithOccurrences[i];
-            bag.addOccurrences(itemToAdd.getOne(), itemToAdd.getTwo());
-        }
-        return bag.toImmutable();
-    }
-
-    @Override
-    public ImmutableBag<Integer> withOccurrences(IntIntPair... elementsWithOccurrences)
-    {
-        if (elementsWithOccurrences == null || elementsWithOccurrences.length == 0)
-        {
-            return this.empty();
-        }
-        if (elementsWithOccurrences.length == 1)
-        {
-            return this.withOccurrences(elementsWithOccurrences[0].getOne(), elementsWithOccurrences[0].getTwo());
-        }
-        if (elementsWithOccurrences.length == 2)
-        {
-            return this.withOccurrences(
-                    elementsWithOccurrences[0].getOne(), elementsWithOccurrences[0].getTwo(),
-                    elementsWithOccurrences[1].getOne(), elementsWithOccurrences[1].getTwo());
-        }
-        if (elementsWithOccurrences.length == 3)
-        {
-            return this.withOccurrences(
-                    elementsWithOccurrences[0].getOne(), elementsWithOccurrences[0].getTwo(),
-                    elementsWithOccurrences[1].getOne(), elementsWithOccurrences[1].getTwo(),
-                    elementsWithOccurrences[2].getOne(), elementsWithOccurrences[2].getTwo());
-        }
-        if (elementsWithOccurrences.length == 4)
-        {
-            return this.withOccurrences(
-                    elementsWithOccurrences[0].getOne(), elementsWithOccurrences[0].getTwo(),
-                    elementsWithOccurrences[1].getOne(), elementsWithOccurrences[1].getTwo(),
-                    elementsWithOccurrences[2].getOne(), elementsWithOccurrences[2].getTwo(),
-                    elementsWithOccurrences[3].getOne(), elementsWithOccurrences[3].getTwo());
-        }
-
-        MutableBag<Integer> bag = new HashBag<>();
-        for (int i = 0; i < elementsWithOccurrences.length; i++)
-        {
-            IntIntPair itemToAdd = elementsWithOccurrences[i];
             bag.addOccurrences(itemToAdd.getOne(), itemToAdd.getTwo());
         }
         return bag.toImmutable();
