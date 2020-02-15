@@ -48,7 +48,7 @@ public class MutableBagFactoryImpl implements MutableBagFactory
     @Override
     public <T> MutableBag<T> withOccurrences(T element, int occurrence)
     {
-        MutableBag<T> bag = new HashBag<>(occurrence);
+        MutableBag<T> bag = this.empty();
         bag.addOccurrences(element, occurrence);
         return bag;
     }
@@ -56,7 +56,7 @@ public class MutableBagFactoryImpl implements MutableBagFactory
     @Override
     public <T> MutableBag<T> withOccurrences(T element1, int occurrence1, T element2, int occurrence2)
     {
-        MutableBag<T> bag = new HashBag<>(occurrence1 + occurrence2);
+        MutableBag<T> bag = this.empty();
         bag.addOccurrences(element1, occurrence1);
         bag.addOccurrences(element2, occurrence2);
         return bag;
@@ -65,7 +65,7 @@ public class MutableBagFactoryImpl implements MutableBagFactory
     @Override
     public <T> MutableBag<T> withOccurrences(T element1, int occurrence1, T element2, int occurrence2, T element3, int occurrence3)
     {
-        MutableBag<T> bag = new HashBag<>(occurrence1 + occurrence2 + occurrence3);
+        MutableBag<T> bag = this.empty();
         bag.addOccurrences(element1, occurrence1);
         bag.addOccurrences(element2, occurrence2);
         bag.addOccurrences(element3, occurrence3);
@@ -75,7 +75,7 @@ public class MutableBagFactoryImpl implements MutableBagFactory
     @Override
     public <T> MutableBag<T> withOccurrences(T element1, int occurrence1, T element2, int occurrence2, T element3, int occurrence3, T element4, int occurrence4)
     {
-        MutableBag<T> bag = new HashBag<>(occurrence1 + occurrence2 + occurrence3 + occurrence4);
+        MutableBag<T> bag = this.empty();
         bag.addOccurrences(element1, occurrence1);
         bag.addOccurrences(element2, occurrence2);
         bag.addOccurrences(element3, occurrence3);
@@ -86,10 +86,9 @@ public class MutableBagFactoryImpl implements MutableBagFactory
     @Override
     public <T> MutableBag<T> withOccurrences(ObjectIntPair<T>... elementsWithOccurrences)
     {
-        MutableBag<T> bag = new HashBag<>();
-        for (int i = 0; i < elementsWithOccurrences.length; i++)
+        MutableBag<T> bag = new HashBag<>(elementsWithOccurrences.length);
+        for (ObjectIntPair<T> itemToAdd : elementsWithOccurrences)
         {
-            ObjectIntPair<T> itemToAdd = elementsWithOccurrences[i];
             bag.addOccurrences(itemToAdd.getOne(), itemToAdd.getTwo());
         }
         return bag;
