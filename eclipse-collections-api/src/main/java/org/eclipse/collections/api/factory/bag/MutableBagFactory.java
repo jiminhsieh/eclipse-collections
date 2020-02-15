@@ -76,15 +76,49 @@ public interface MutableBagFactory
 
     <T> MutableBag<T> with(T... elements);
 
-    <T> MutableBag<T> withOccurrences(T element, int occurrence);
+    default <T> MutableBag<T> withOccurrences(T element, int occurrence)
+    {
+        MutableBag<T> bag = this.empty();
+        bag.addOccurrences(element, occurrence);
+        return bag;
+    }
 
-    <T> MutableBag<T> withOccurrences(T element1, int occurrence1, T element2, int occurrence2);
+    default <T> MutableBag<T> withOccurrences(T element1, int occurrence1, T element2, int occurrence2)
+    {
+        MutableBag<T> bag = this.empty();
+        bag.addOccurrences(element1, occurrence1);
+        bag.addOccurrences(element2, occurrence2);
+        return bag;
+    }
 
-    <T> MutableBag<T> withOccurrences(T element1, int occurrence1, T element2, int occurrence2, T element3, int occurrence3);
+    default <T> MutableBag<T> withOccurrences(T element1, int occurrence1, T element2, int occurrence2, T element3, int occurrence3)
+    {
+        MutableBag<T> bag = this.empty();
+        bag.addOccurrences(element1, occurrence1);
+        bag.addOccurrences(element2, occurrence2);
+        bag.addOccurrences(element3, occurrence3);
+        return bag;
+    }
 
-    <T> MutableBag<T> withOccurrences(T element1, int occurrence1, T element2, int occurrence2, T element3, int occurrence3, T element4, int occurrence4);
+    default <T> MutableBag<T> withOccurrences(T element1, int occurrence1, T element2, int occurrence2, T element3, int occurrence3, T element4, int occurrence4)
+    {
+        MutableBag<T> bag = this.empty();
+        bag.addOccurrences(element1, occurrence1);
+        bag.addOccurrences(element2, occurrence2);
+        bag.addOccurrences(element3, occurrence3);
+        bag.addOccurrences(element4, occurrence4);
+        return bag;
+    }
 
-    <T> MutableBag<T> withOccurrences(ObjectIntPair<T>... elementsWithOccurrences);
+    default <T> MutableBag<T> withOccurrences(ObjectIntPair<T>... elementsWithOccurrences)
+    {
+        MutableBag<T> bag = this.empty();
+        for (ObjectIntPair<T> itemToAdd : elementsWithOccurrences)
+        {
+            bag.addOccurrences(itemToAdd.getOne(), itemToAdd.getTwo());
+        }
+        return bag;
+    }
 
     /**
      * Same as {@link #withAll(Iterable)}.

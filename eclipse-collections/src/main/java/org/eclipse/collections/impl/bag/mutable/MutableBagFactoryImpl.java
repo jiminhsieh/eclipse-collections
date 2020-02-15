@@ -15,7 +15,6 @@ import java.util.stream.Stream;
 
 import org.eclipse.collections.api.bag.MutableBag;
 import org.eclipse.collections.api.factory.bag.MutableBagFactory;
-import org.eclipse.collections.api.tuple.primitive.ObjectIntPair;
 
 public class MutableBagFactoryImpl implements MutableBagFactory
 {
@@ -43,54 +42,5 @@ public class MutableBagFactoryImpl implements MutableBagFactory
     public <T> MutableBag<T> fromStream(Stream<? extends T> stream)
     {
         return stream.collect(Collectors.toCollection(HashBag::newBag));
-    }
-
-    @Override
-    public <T> MutableBag<T> withOccurrences(T element, int occurrence)
-    {
-        MutableBag<T> bag = this.empty();
-        bag.addOccurrences(element, occurrence);
-        return bag;
-    }
-
-    @Override
-    public <T> MutableBag<T> withOccurrences(T element1, int occurrence1, T element2, int occurrence2)
-    {
-        MutableBag<T> bag = this.empty();
-        bag.addOccurrences(element1, occurrence1);
-        bag.addOccurrences(element2, occurrence2);
-        return bag;
-    }
-
-    @Override
-    public <T> MutableBag<T> withOccurrences(T element1, int occurrence1, T element2, int occurrence2, T element3, int occurrence3)
-    {
-        MutableBag<T> bag = this.empty();
-        bag.addOccurrences(element1, occurrence1);
-        bag.addOccurrences(element2, occurrence2);
-        bag.addOccurrences(element3, occurrence3);
-        return bag;
-    }
-
-    @Override
-    public <T> MutableBag<T> withOccurrences(T element1, int occurrence1, T element2, int occurrence2, T element3, int occurrence3, T element4, int occurrence4)
-    {
-        MutableBag<T> bag = this.empty();
-        bag.addOccurrences(element1, occurrence1);
-        bag.addOccurrences(element2, occurrence2);
-        bag.addOccurrences(element3, occurrence3);
-        bag.addOccurrences(element4, occurrence4);
-        return bag;
-    }
-
-    @Override
-    public <T> MutableBag<T> withOccurrences(ObjectIntPair<T>... elementsWithOccurrences)
-    {
-        MutableBag<T> bag = new HashBag<>(elementsWithOccurrences.length);
-        for (ObjectIntPair<T> itemToAdd : elementsWithOccurrences)
-        {
-            bag.addOccurrences(itemToAdd.getOne(), itemToAdd.getTwo());
-        }
-        return bag;
     }
 }
