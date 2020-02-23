@@ -49,26 +49,49 @@ public interface ImmutableBagFactory
      */
     <T> ImmutableBag<T> of(T... elements);
 
+    /**
+     * Same as {@link #withOccurrences(Object, int)}.
+     *
+     * @since 11.0
+     */
     default <T> ImmutableBag<T> ofOccurrences(T element, int occurrence)
     {
         return this.withOccurrences(element, occurrence);
     }
 
+    /**
+     * Same as {@link #withOccurrences(Object, int, Object, int)}.
+     * @since 11.0
+     */
     default <T> ImmutableBag<T> ofOccurrences(T element1, int occurrence1, T element2, int occurrence2)
     {
         return this.withOccurrences(element1, occurrence1, element2, occurrence2);
     }
 
+    /**
+     * Same as {@link #withOccurrences(Object, int, Object, int, Object, int)}.
+     *
+     * @since 11.0
+     */
     default <T> ImmutableBag<T> ofOccurrences(T element1, int occurrence1, T element2, int occurrence2, T element3, int occurrence3)
     {
         return this.withOccurrences(element1, occurrence1, element2, occurrence2, element3, occurrence3);
     }
 
+    /**
+     * Same as {@link #withOccurrences(Object, int, Object, int, Object, int, Object, int)}.
+     * 
+     * @since 11.0
+     */
     default <T> ImmutableBag<T> ofOccurrences(T element1, int occurrence1, T element2, int occurrence2, T element3, int occurrence3, T element4, int occurrence4)
     {
         return this.withOccurrences(element1, occurrence1, element2, occurrence2, element3, occurrence3, element4, occurrence4);
     }
 
+    /**
+     * Same as {@link #withOccurrences(ObjectIntPair[])}
+     * @since 11.0
+     */
     default <T> ImmutableBag<T> ofOccurrences(ObjectIntPair<T>... elementsWithOccurrences)
     {
         return this.withOccurrences(elementsWithOccurrences);
@@ -76,12 +99,18 @@ public interface ImmutableBagFactory
 
     <T> ImmutableBag<T> with(T... elements);
 
+    /**
+     * @since 11.0
+     */
     default <T> ImmutableBag<T> withOccurrences(T element, int occurrence)
     {
         MutableBag<T> mutableBag = Bags.mutable.withOccurrences(element, occurrence);
         return mutableBag.toImmutable();
     }
 
+    /**
+     * @since 11.0
+     */
     default <T> ImmutableBag<T> withOccurrences(T element1, int occurrence1, T element2, int occurrence2)
     {
         MutableBag<T> mutableBag = Bags.mutable.withOccurrences(
@@ -90,6 +119,9 @@ public interface ImmutableBagFactory
         return mutableBag.toImmutable();
     }
 
+    /**
+     * @since 11.0
+     */
     default <T> ImmutableBag<T> withOccurrences(T element1, int occurrence1, T element2, int occurrence2, T element3, int occurrence3)
     {
         MutableBag<T> mutableBag = Bags.mutable.withOccurrences(
@@ -99,6 +131,9 @@ public interface ImmutableBagFactory
         return mutableBag.toImmutable();
     }
 
+    /**
+     * @since 11.0
+     */
     default <T> ImmutableBag<T> withOccurrences(T element1, int occurrence1, T element2, int occurrence2, T element3, int occurrence3, T element4, int occurrence4)
     {
         MutableBag<T> mutableBag = Bags.mutable.withOccurrences(
@@ -109,6 +144,9 @@ public interface ImmutableBagFactory
         return mutableBag.toImmutable();
     }
 
+    /**
+     * @since 11.0
+     */
     default <T> ImmutableBag<T> withOccurrences(ObjectIntPair<T>... elementsWithOccurrences)
     {
         return Bags.mutable.withOccurrences(elementsWithOccurrences).toImmutable();
